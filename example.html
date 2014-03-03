@@ -145,6 +145,14 @@
 				<h3>So can non active ones, allowing you to customize how it all looks</h3>			
 			</div>
 		</div>
+		
+		<h2>Progmatically Showing Tabs</h2>
+		<p>In certain cases, such as validation or other workflows you may need to show a tab from code</p>
+		<p>This is not nice as you need to know the tab selector in the code which makes the viewmodel dependant upon the view</p>
+		<p>However putting that aside as some times there is a need to do these sort of things, so you can use the 'ko.tabs.show(tabSelector)' method</p>
+		<a data-bind="click: ShowCssTab1">Show Css Tab 1</a>
+		<a data-bind="click: ShowCssTab2">Show Css Tab 2</a>
+		
         <script>
 
 			function DummyViewModel()
@@ -159,6 +167,14 @@
 				
 				this.CustomHiddenCallback = function(tabEntry, groupName, options) {
 					$(tabEntry.ContentElement).slideUp();
+				};
+				
+				this.ShowCssTab1 = function() {
+					ko.tabs.show("#css-tab-trigger-1");
+				};
+				
+				this.ShowCssTab2 = function() {
+					ko.tabs.show("#css-tab-trigger-2");
 				};
 			}
 

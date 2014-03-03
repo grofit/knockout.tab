@@ -1,5 +1,8 @@
 (function(knockout){
 	knockout.tabs = [];
+	knockout.tabs.show = function(tabSelector) {
+		$(tabSelector).trigger('click');
+	};
 			
 	var setupTabEntry = function(tabElement, contentElement, isVisible, groupName, options) {
 		var tabEntry = {

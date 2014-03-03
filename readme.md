@@ -46,6 +46,14 @@ The callbacks above will always be sent the tabEntry object, the group name, and
 You can add your own custom options such as a *data* entry incase you need to pass any view model data to callbacks, or specific 
 transition data for your custom logic. It is recommended you try to reduce this wherever possible but the functionality is
 available for you to do this if needed.
+
+There is finally a helper method to help you manually show a tab if required, it is a bit nasty as it requires the viewmodel
+to know the html selector of the tab, however in certain cases like showing a tab if validation failed or showing a page
+if an event occurs it can help you out:
+
+```
+ko.tabs.show("#the-tab-selector-here");
+```
  
 Here is an example of what it does and how to use it.
 [View Example](https://rawgithub.com/grofit/knockout.tab/master/example.html)
