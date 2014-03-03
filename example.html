@@ -1,0 +1,168 @@
+<html>
+	<head>
+		<title>Tabs Binding Example</title>
+	</head>
+	<body>
+		<script src="libs/knockout-2.3.0.min.js" type="text/javascript"></script>
+		<script src="libs/jquery-2.0.3.min.js" type="text/javascript"></script>
+		<script src="src/knockout.tab.js" type="text/javascript"></script>
+		<style>
+			a 
+			{ 
+				color: orange; 
+				cursor: pointer;
+				margin: 5px;
+			}
+			div[id*="tab-buttons"]
+			{
+				border: 1px solid #000;
+				margin: 10px;
+			}
+			div[id*="tabs-container"]
+			{
+				border: 1px dashed #000;
+				margin: 10px;
+			}
+			
+			a[id*="css-tab-trigger"].active-tab
+			{
+				color: gold;
+				text-shadow: 0 0 1px #000;
+				font-weight: bold;
+				font-size: 2em;
+				border: 2px dashed orange;
+			}
+			
+			a[id*="css-tab-trigger"]
+			{
+				color: #000;
+				font-size: 1em;
+				border: 1px solid green;
+			}
+        </style>
+
+		<h2>Simple Tab Group</h2>
+		<p>You can simply just create tabs with content without explicitly using a group or anything like that</p>
+		<p>This example shows how to do that, just assign the content and it will use the 'default' group</p>
+		<div id="simple-tab-buttons">
+			<a id="simple-tab-trigger-1" data-bind="tab: { content: '#simple-tab-content-1', options: { isDefault: true } }">Tab 1</a>
+			<a id="simple-tab-trigger-2" data-bind="tab: { content: '#simple-tab-content-2' }">Tab 2</a>
+			<a id="simple-tab-trigger-3" data-bind="tab: { content: '#simple-tab-content-3' }">Tab 3</a>
+		</div>
+		<div id="simple-tabs-container">
+			<div id="simple-tab-content-1">
+				<h3>Here is some content</h3>
+				<p>Woowoo put whatever you want in the content, forms, pictures etc...</p>
+			</div>
+			<div id="simple-tab-content-2">
+				<h3>Here is some more content</h3>				
+			</div>
+			<div id="simple-tab-content-3">
+				<a>Here is a link</a>
+			</div>
+		</div>
+		
+		<h2>Custom Tab Groups</h2>
+		<p>You will need to use multiple tabs on a page then you will need to specify custom groups to separate the behaviour</p>
+		<p>The example below shows that you can assign 2 different tab groups and they will both work independently</p>
+		<div id="custom-tab-buttons">
+			<a id="custom-tab-trigger-1" data-bind="tab: { content: '#custom-tab-content-1', group: 'group-1', options: { isDefault: true } }">Group 1 - Tab 1</a>
+			<a id="custom-tab-trigger-2" data-bind="tab: { content: '#custom-tab-content-2', group: 'group-1' }">Group 1 - Tab 2</a>
+			<a id="custom-tab-trigger-3" data-bind="tab: { content: '#custom-tab-content-3', group: 'group-1' }">Group 1 - Tab 3</a>
+			<span>|</span>
+			<a id="custom-tab-trigger-4" data-bind="tab: { content: '#custom-tab-content-4', group: 'group-2' }">Group 2 - Tab 1</a>
+			<a id="custom-tab-trigger-5" data-bind="tab: { content: '#custom-tab-content-5', group: 'group-2', options: { isDefault: true } }">Group 2 - Tab 2</a>
+		</div>
+		<div id="custom-tabs-container-1">
+			<div id="custom-tab-content-1">
+				<h3>This is part of the first groups tabs</h3>
+				<p>Woowoo put whatever you want in the content, forms, pictures etc...</p>
+			</div>
+			<div id="custom-tab-content-2">
+				<h3>This is also one of the first groups tabs</h3>
+				<h3>Here is some more content</h3>				
+			</div>
+			<div id="custom-tab-content-3">
+				<h3>Finally this is the last of the first groups tabs</h3>
+				<a>Here is a link</a>
+			</div>
+		</div>
+		<div id="custom-tabs-container-2">
+			<div id="custom-tab-content-4">
+				<h3>This is with the second group of tabs</h3>
+				<p>Woowoo put whatever you want in the content, forms, pictures etc...</p>
+			</div>
+			<div id="custom-tab-content-5">
+				<h3>Finally this is the last of the second groups tabs</h3>
+				<h3>Here is some more content</h3>				
+			</div>
+		</div>
+		
+		<h2>Callback Tab Group</h2>
+		<p>In some cases you will need to run some logic when a tab has changed, in this case you can use the onTabChanged callback</p>
+		<p>This will notify you when someone has clicked the tab in question so you can do some logic</p>
+		<div id="callback-tab-buttons">
+			<a id="callback-tab-trigger-1" data-bind="tab: { content: '#callback-tab-content-1', group: 'group-3', options: { isDefault: true } }">Tab 1</a>
+			<a id="callback-tab-trigger-2" data-bind="tab: { content: '#callback-tab-content-2', group: 'group-3', options: { onTabChanged: Tab2ChangedCallback } }">Tab 2</a>
+		</div>
+		<div id="callback-tabs-container">
+			<div id="callback-tab-content-1">
+				<h3>Not really bothered about this tab being changed</h3>
+			</div>
+			<div id="callback-tab-content-2">
+				<h3>A message box will have popped up telling you that I have been selected</h3>			
+			</div>
+		</div>
+		
+		<h2>Custom Show/Hide Logic Group</h2>
+		<p>Not everyone wants their tab content to show and hide so simply, some people will want to transition the content in different ways</p>
+		<p>To do this you set the options 'onVisible' and 'onHidden', this will then use your custom logic to show and hide content rather than default showing and hiding</p>
+		<div id="custom-logic-tab-buttons">
+			<a id="custom-logic-tab-trigger-1" data-bind="tab: { content: '#custom-logic-tab-content-1', group: 'group-4', options: { isDefault: true } }">Tab 1</a>
+			<a id="custom-logic-tab-trigger-2" data-bind="tab: { content: '#custom-logic-tab-content-2', group: 'group-4', options: { onVisible: CustomVisibleCallback, onHidden: CustomHiddenCallback } }">Tab 2</a>
+		</div>
+		<div id="custom-logic-tabs-container">
+			<div id="custom-logic-tab-content-1">
+				<h3>When hiding content it will be slid up</h3>
+			</div>
+			<div id="custom-logic-tab-content-2">
+				<h3>When showing content it will be slid down</h3>			
+			</div>
+		</div>
+		
+		<h2>Custom CSS Classes</h2>
+		<p>In some cases you may want to apply specific css classes to tabs when they have been made active or when they are inactive</p>
+		<p>To do this you can specify the 'activeClass' options which will add and remove the classes as required, as showing in this awfully styled example below</p>
+		<div id="css-tab-buttons">
+			<a id="css-tab-trigger-1" data-bind="tab: { content: '#css-tab-content-1', group: 'group-5', options: { activeClass: 'active-tab', isDefault: true } }">Tab 1</a>
+			<a id="css-tab-trigger-2" data-bind="tab: { content: '#css-tab-content-2', group: 'group-5', options: { activeClass: 'active-tab' } }">Tab 2</a>
+		</div>
+		<div id="css-tabs-container">
+			<div id="css-tab-content-1">
+				<h3>The active tab can have a css class applied</h3>
+			</div>
+			<div id="css-tab-content-2">
+				<h3>So can non active ones, allowing you to customize how it all looks</h3>			
+			</div>
+		</div>
+        <script>
+
+			function DummyViewModel()
+			{
+				this.Tab2ChangedCallback = function(tabEntry, groupName, options) {
+					alert("You have changed this tab, woop woop");
+				};
+				
+				this.CustomVisibleCallback = function(tabEntry, groupName, options) {
+					$(tabEntry.ContentElement).slideDown();
+				};
+				
+				this.CustomHiddenCallback = function(tabEntry, groupName, options) {
+					$(tabEntry.ContentElement).slideUp();
+				};
+			}
+
+            ko.applyBindings(new DummyViewModel());
+        </script>
+	</body>
+</html>
