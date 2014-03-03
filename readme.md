@@ -1,4 +1,4 @@
-# Knockout.Tabs
+# Knockout.Tab
 
 A simple binding to allow you to easily add tab behaviour to your project.
 
