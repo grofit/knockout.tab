@@ -36,11 +36,11 @@ The available options for this binding are:
 * **content** - The jquery selector for the modal content element
 * **group** - The textual group identifier, should be unique for each tab group
 * **options** - The collection of options for the modal instance, see below for available options
- * **isDefault** - This will set this tab's content as visible when loading, as most times one tab will be seen as the default one
- * **activeclass** - This is the css class that will be applied to active tabs
- * **onVisible** - The callback for you to specify your own logic for showing the tab content
- * **onHidden** - The callback for you to specify your own logic for hiding the tab content
- * **onTabChanged** - The callback for when a tab has been activated
+  * **isDefault** - This will set this tab's content as visible when loading, as most times one tab will be seen as the default one
+  * **activeClass** - This is the css class that will be applied to active tabs
+  * **onVisible** - The callback for you to specify your own logic for showing the tab content
+  * **onHidden** - The callback for you to specify your own logic for hiding the tab content
+  * **onTabChanged** - The callback for when a tab has been activated
  
 The callbacks above will always be sent the tabEntry object, the group name, and the options that are applied to that tab.
 You can add your own custom options such as a *data* entry incase you need to pass any view model data to callbacks, or specific 
